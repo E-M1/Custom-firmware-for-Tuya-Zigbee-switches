@@ -94,3 +94,30 @@ AUBESS_TS0003:
   threads: https://github.com/romasku/tuya-zigbee-switch/pull/151
   store:
   - https://www.amazon.co.uk/dp/B0DKC2CRFJ
+
+MUMUBIZ_TYZGTH1CH_D1RF:
+  human_name: Mumubiz TYZGTH1CH-D1RF
+  category: module
+  power: mains
+  neutral: null
+  device_type: router
+  tuya_model_name: TS000F
+  tuya_manufacturer_name: _TZ3218_7fiyo3kv
+  stock_converter_manufacturer: Mumubiz
+  stock_converter_model: TYZGTH1CH-D1RF
+  override_z2m_device: null
+  tuya_module: ZT3L
+  mcu_family: Telink
+  mcu: TLSR8258
+  config_str: 7fiyo3kv;MUMUBIZ-RELAY;BC3u;RD2;
+  alt_config_str: null
+  old_manufacturer_names: null
+  old_zb_models: null
+  tuya_manufacturer_id: 4417
+  tuya_image_type: null
+  firmware_image_type: 45594
+  build: yes
+  status: in_progress
+  info: "Measured relay GPIO D2 and pairing button GPIO C3; LEDs and temperature not configured."
+  threads: https://github.com/Koenkk/zigbee2mqtt/issues/23974
+  store: null
