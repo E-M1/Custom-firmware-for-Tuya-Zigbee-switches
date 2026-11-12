@@ -9,6 +9,9 @@ on:
 #    branches:
 #      - main
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,24 +20,12 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
       with:
-        fetch-depth: 0  
+        fetch-depth: 0
 
     - name: Install dependencies
       run: |
         sudo apt-get update
         sudo apt-get install -y make python3 yq unzip wget gcc-arm-none-eabi
-
-    - name: Set up JDK 21
-      uses: actions/setup-java@v4
-      with:
-        distribution: temurin
-        java-version: 21
-
-    - name: Cache Silicon Labs Tools
-      uses: actions/cache@v3
-      with:
-        path: silabs_tools
-        key: silabs-tools-2025.6.2
 
     - name: Cache Telink Tools
       uses: actions/cache@v3
@@ -48,40 +39,22 @@ jobs:
         path: .venv
         key: python-venv-${{ hashFiles('requirements.txt') }}
 
-    - name: Install SDK and Toolchain
+    - name: Install Telink SDK and Toolchain
       run: |
-        make setup || (
-          echo "dumping log:" &&
-          cat /home/runner/work/tuya-zigbee-switch/tuya-zigbee-switch/silabs_tools/slc-cli/bin/slc-cli/configuration/*.log
-        )
+        make telink/tools/all
+        make setup_venv
 
     - name: Clear out index files
       run: |
         source .venv/bin/activate
-        make tools/clean_z2m_index 
+        make tools/clean_z2m_index
 
-    - name: Build for all boards
+    - name: Build Mumubiz firmware
       run: |
         source .venv/bin/activate
-        yq -r 'to_entries | sort_by(.key)[] | "\(.key) \(.value.device_type) \(.value.build)"' device_db.yaml | while read ITER TYPE BUILD; do
-
-          if [ "$BUILD" = "no" ]; then
-            echo "Skipping $ITER as building this model is disabled in the db."
-            continue
-          fi
-  
-          echo "Building for board: $ITER (router)"
-          BOARD=$ITER DEVICE_TYPE=router make board/build || exit 1
-          echo "Checking if files were created for board: $ITER (router)"
-          ls -l bin/router/$ITER/
-
-          if [ "$TYPE" = "end_device" ]; then
-            echo "Building for board: $ITER (end_device)"
-            BOARD=${ITER} DEVICE_TYPE=end_device make board/build || exit 1
-            echo "Checking if files were created for board: $ITER (end_device)"
-            ls -l bin/end_device/${ITER}_END_DEVICE/
-          fi
-        done
+        BOARD=MUMUBIZ_TYZGTH1CH_D1RF DEVICE_TYPE=router make board/build
+        echo "Checking generated Mumubiz firmware files"
+        ls -l bin/router/MUMUBIZ_TYZGTH1CH_D1RF/
 
     - name: Update Z2M converters
       run: |
@@ -104,7 +77,7 @@ jobs:
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
         git add bin/* zigbee2mqtt/* zha/* docs/devices/supported.md
-        git diff --cached --quiet || git commit -m "Update firmware files, converters, quirks and supported devices list"
+        git diff --cached --quiet || git commit -m "Build Mumubiz firmware and update generated files"
         make tools/freeze_ota_links
         git add zigbee2mqtt/*
         git diff --cached --quiet || git commit -m "Freeze links in OTA index files"
