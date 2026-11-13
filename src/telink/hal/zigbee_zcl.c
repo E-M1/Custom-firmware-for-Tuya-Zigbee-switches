@@ -4,6 +4,7 @@
 #include "zcl_include.h"
 #include "zcl_multistate_input.h"
 #include "zcl_onoff_configuration.h"
+#include "custom_zcl/zcl_temperature_measurement.h"
 #pragma pack(pop)
 
 #include "telink_size_t_hack.h"
