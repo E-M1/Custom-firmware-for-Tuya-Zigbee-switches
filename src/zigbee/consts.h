@@ -13,6 +13,7 @@
 #define ZCL_CLUSTER_LEVEL_CONTROL                     0x0008
 #define ZCL_CLUSTER_GROUPS                            0x0004
 #define ZCL_CLUSTER_OTA_BOOTLOAD                      0x0019
+#define ZCL_CLUSTER_TEMPERATURE_MEASUREMENT           0x0402
 
 
 // Attributes
