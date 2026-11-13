@@ -1,25 +1,21 @@
 #include "temperature_cluster.h"
 
 #include "cluster_common.h"
-#include "consts.h"
+#include "zigbee/consts.h"
 #include "hal/printf_selector.h"
 #include "hal/timer.h"
 #include "hal/zigbee.h"
-#include "telink_size_t_hack.h"
 
-#include <stdlib.h>
-
-#pragma pack(push, 1)
-#include "tl_common.h"
-#pragma pack(pop)
 
 #define TEMP_POLL_INTERVAL_MS 30000
 #define TEMP_INITIAL_DELAY_MS 2000
 
 static inline void ow_delay_us(uint32_t us) {
-  uint32_t start = clock_time();
-  uint32_t ticks = us * 16;
-  while ((uint32_t)(clock_time() - start) < ticks) {
+  volatile uint32_t i;
+  while (us--) {
+    for (i = 0; i < 10; i++) {
+      ;
+    }
   }
 }
 
