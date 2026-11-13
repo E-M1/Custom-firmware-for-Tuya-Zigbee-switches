@@ -142,7 +142,7 @@ CONFIGS = [
     "WHD02-Aubess;WHD02-Aubess-ED;BC4u;LD2;SB4u;RB5;",
     "lmlsduws;TS0002-AUB;BC4u;LB1;SC2u;RB7;SC3u;RB4;",
     "lvhy15ix;TS0003-AUB;BC4u;LB1;SC2u;RB7;SC3u;RB4;SD2u;RB5;",
-    "7fiyo3kv;MUMUBIZ-RELAY;BC3u;RD2;",
+    "7fiyo3kv;MUMUBIZ-RELAY;BC3u;RD2;TD7;",
 ]
 
 for config in CONFIGS:

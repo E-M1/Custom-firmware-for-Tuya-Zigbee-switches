@@ -41,6 +41,6 @@ To support a new device, read [contribute/porting.md](/docs/contribute/porting.m
 | 🟩 | ✔️ | 🇲 | 🔌 | 🛜 | **TL** | `_TZ3000_46t1rvdu` <br> `TS0001` | [Aubess WHD02](https://www.zigbee2mqtt.io/devices/WHD02.html) |   | [`#018`](https://github.com/romasku/tuya-zigbee-switch/issues/18) | Supported | 
 | 🟩 | ✔️ | 🇲 | 🔌 | 🛜 | **TL** | `_TZ3000_lmlsduws` <br> `TS0002` | [Aubess TMZ02](https://www.zigbee2mqtt.io/devices/TMZ02.html) | [`AlEx`](https://www.aliexpress.com/item/1005005748264739.html) | [`#153`](https://github.com/romasku/tuya-zigbee-switch/pull/153) | Supported | 
 | 🟩 | ✔️ | 🇲 | 🔌 | 🛜 | **TL** | `_TZ3000_lvhy15ix` <br> `TS0003` | [Aubess 3-gang](https://www.zigbee2mqtt.io/devices/TS0003_switch_module_2.html) | [`amzn`](https://www.amazon.co.uk/dp/B0DKC2CRFJ) | [`#151`](https://github.com/romasku/tuya-zigbee-switch/pull/151) | Supported | 
-| 🟧 | ✔️ | 🇲 | 🔌 | ➿ | **TL** | `_TZ3218_7fiyo3kv` <br> `TS000F` | [Mumubiz TYZGTH1CH-D1RF](https://www.zigbee2mqtt.io/devices/TYZGTH1CH-D1RF.html) |   | [`#23974`](https://github.com/Koenkk/zigbee2mqtt/issues/23974) | Measured relay GPIO D2 and pairing button GPIO C3; LEDs and temperature not configured. | 
+| 🟧 | ✔️ | 🇲 | 🔌 | ➿ | **TL** | `_TZ3218_7fiyo3kv` <br> `TS000F` | [Mumubiz TYZGTH1CH-D1RF](https://www.zigbee2mqtt.io/devices/TYZGTH1CH-D1RF.html) |   | [`#23974`](https://github.com/Koenkk/zigbee2mqtt/issues/23974) | Measured relay GPIO D2, pairing button GPIO C3, and DS18B20 temperature probe on D7. | 
 
 Data from [`device_db.yaml`](/device_db.yaml)
