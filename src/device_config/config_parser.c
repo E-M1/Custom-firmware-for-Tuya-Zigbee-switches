@@ -6,6 +6,7 @@
 #include "zigbee/group_cluster.h"
 #include "zigbee/relay_cluster.h"
 #include "zigbee/switch_cluster.h"
+#include "zigbee/temperature_cluster.h"
 
 #include <stdint.h>
 #include <string.h>
@@ -49,6 +50,11 @@ uint8_t switch_clusters_cnt = 0;
 
 zigbee_relay_cluster relay_clusters[4];
 uint8_t relay_clusters_cnt = 0;
+
+zigbee_temperature_cluster temperature_cluster = {
+    .pin = HAL_INVALID_PIN,
+};
+uint8_t temperature_cluster_cnt = 0;
 
 hal_zigbee_cluster clusters[32];
 hal_zigbee_endpoint endpoints[10];
@@ -174,6 +180,19 @@ void parse_config() {
 
       relays_cnt++;
       relay_clusters_cnt++;
+    } else if (entry[0] == 'T') {
+      if (temperature_cluster_cnt != 0) {
+        printf("Only one temperature sensor is supported\r\n");
+        reset_all();
+      }
+
+      hal_gpio_pin_t pin = hal_gpio_parse_pin(entry + 1);
+      if (pin == HAL_INVALID_PIN) {
+        printf("Invalid temperature pin\r\n");
+        reset_all();
+      }
+      temperature_cluster.pin = pin;
+      temperature_cluster_cnt = 1;
     } else if (entry[0] == 'i') {
       uint32_t image_type = parse_int(entry + 1);
       hal_zigbee_set_image_type(image_type);
@@ -209,6 +228,10 @@ void parse_config() {
 
   endpoints[0].clusters = cluster_ptr;
   basic_cluster_add_to_endpoint(&basic_cluster, &endpoints[0]);
+
+  if (temperature_cluster_cnt != 0) {
+    temperature_cluster_add_to_endpoint(&temperature_cluster, &endpoints[0]);
+  }
 
   hal_ota_cluster_setup(&endpoints[0].clusters[endpoints[0].cluster_count]);
   endpoints[0].cluster_count++;
