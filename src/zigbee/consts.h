@@ -21,6 +21,7 @@
 // Global
 
 #define ZCL_ATTR_GLOBAL_CLUSTER_REVISION                0xFFFD
+#define ZCL_ATTR_TEMPERATURE_MEASURED_VALUE            0x0000
 
 // Basic cluster
 
