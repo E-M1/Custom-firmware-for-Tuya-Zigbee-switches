@@ -15,6 +15,7 @@ typedef struct {
   hal_zigbee_attribute attr_infos[2];
   hal_task_t poll_task;
   uint8_t initialized;
+  uint8_t conversion_pending;
 } zigbee_temperature_cluster;
 
 void temperature_cluster_add_to_endpoint(zigbee_temperature_cluster *cluster,
