@@ -2,6 +2,8 @@
 #include "zcl_include.h"
 #pragma pack(pop)
 
+#include "zigbee/consts.h"
+
 _CODE_ZCL_ status_t zcl_temperature_measurement_register(u8 endpoint, u16 manuCode,
                                                          u8 attrNum,
                                                          const zclAttrInfo_t attrTbl[],
