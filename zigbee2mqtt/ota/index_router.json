@@ -1,12 +1,12 @@
 [
   {
-    "fileName": "tlc_switch-1.1.2-a6bc6f03.zigbee",
-    "fileVersion": 285356076,
-    "fileSize": 175826,
-    "url": "https://github.com/E-M1/Custom-firmware-for-Tuya-Zigbee-switches/raw/5fc7e36763462b5e6bd2e885cf8fffb9b932e444/bin/router/MUMUBIZ_TYZGTH1CH_D1RF/tlc_switch-1.1.2-a6bc6f03.zigbee",
+    "fileName": "tlc_switch-1.1.2-b9a57b8b.zigbee",
+    "fileVersion": 285356082,
+    "fileSize": 175842,
+    "url": "https://github.com/E-M1/Custom-firmware-for-Tuya-Zigbee-switches/raw/refs/heads/mumubiz-temperature/bin/router/MUMUBIZ_TYZGTH1CH_D1RF/tlc_switch-1.1.2-b9a57b8b.zigbee",
     "imageType": 45594,
     "manufacturerCode": 4417,
-    "sha512": "314ef146e77fc40b8f634e36a50c97ead8c702814282b6f0e6e6ad6945e743413a66abfe79c90d5e9ca615512645b10bc7b6628c6a31bb5c3125632ca41f16cb",
+    "sha512": "73949e28ac7975e679f48f0e3dfa88bb589def777c4d9f65f82e3a02128fcb81f1bc4ae763f35a0f3ea10e8b115827db5db240c25db88f8ce24fbf12bfbb483d",
     "otaHeaderString": "Telink OTA Image\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
     "manufacturerName": [
       "_TZ3218_7fiyo3kv",
