@@ -137,6 +137,7 @@ TELINK_SOURCES := \
 	libc_polyfills/atoi.c \
 	custom_zcl/zcl_multistate_input.c \
 	custom_zcl/zcl_onoff_configuration.c \
+	custom_zcl/zcl_temperature_measurement.c \
 	patch_sdk/drv_nv.c
 
 # Common source files (shared with Silicon Labs build)
@@ -154,7 +155,8 @@ COMMON_SOURCES := \
 	$(SRC_DIR)/zigbee/general_commands.c \
 	$(SRC_DIR)/zigbee/group_cluster.c \
 	$(SRC_DIR)/zigbee/relay_cluster.c \
-	$(SRC_DIR)/zigbee/switch_cluster.c
+	$(SRC_DIR)/zigbee/switch_cluster.c \
+	$(SRC_DIR)/zigbee/temperature_cluster.c
 
 # All application sources
 ALL_TELINK_SOURCES := $(TELINK_SOURCES) $(COMMON_SOURCES)
