@@ -86,13 +86,13 @@ static void ow_write_byte(hal_gpio_pin_t pin, uint8_t value) {
 static uint8_t ow_read_byte(hal_gpio_pin_t pin) {
   uint8_t value = 0;
   for (uint8_t i = 0; i < 8; i++) {
-    value >>= 1;
     if (ow_read_bit(pin)) {
-      value |= 0x80;
+      value |= (1u << i);
     }
   }
   return value;
 }
+
 
 static uint8_t ds18b20_crc8(const uint8_t *data, uint8_t len) {
   uint8_t crc = 0;
