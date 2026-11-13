@@ -53,6 +53,32 @@ uint8_t hal_gpio_read(hal_gpio_pin_t gpio_pin) {
   return gpio_read((GPIO_PinTypeDef)gpio_pin) ? 1 : 0;
 }
 
+/*
+ * Fast open-drain operations for 1-Wire. The output latch is always held LOW;
+ * releasing the bus means disabling the output driver, never driving HIGH.
+ * The pull-up is configured once in init, not rewritten in every time slot.
+ */
+void hal_gpio_onewire_init(hal_gpio_pin_t gpio_pin) {
+  GPIO_PinTypeDef pin = (GPIO_PinTypeDef)gpio_pin;
+  gpio_write(pin, 0);
+  gpio_set_output_en(pin, 0);
+  gpio_set_input_en(pin, 1);
+  gpio_setup_up_down_resistor(pin, PM_PIN_PULLUP_10K);
+}
+
+void hal_gpio_onewire_low(hal_gpio_pin_t gpio_pin) {
+  GPIO_PinTypeDef pin = (GPIO_PinTypeDef)gpio_pin;
+  gpio_write(pin, 0);
+  gpio_set_input_en(pin, 0);
+  gpio_set_output_en(pin, 1);
+}
+
+void hal_gpio_onewire_release(hal_gpio_pin_t gpio_pin) {
+  GPIO_PinTypeDef pin = (GPIO_PinTypeDef)gpio_pin;
+  gpio_set_output_en(pin, 0);
+  gpio_set_input_en(pin, 1);
+}
+
 hal_gpio_pin_t hal_gpio_parse_pin(const char *s) {
   if (!s || strlen(s) < 2) {
     return HAL_INVALID_PIN;

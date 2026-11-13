@@ -43,6 +43,7 @@ if __name__ == "__main__":
         switch_cnt = 0
         indicators_cnt = 0
         has_dedicated_net_led = False
+        has_temperature = False
         for peripheral in peripherals:
             if peripheral[0] == "R":
                 relay_cnt += 1
@@ -52,6 +53,8 @@ if __name__ == "__main__":
                 indicators_cnt += 1
             if peripheral[0] == 'L':
                 has_dedicated_net_led = True
+            if peripheral[0] == 'T':
+                has_temperature = True
         
         if switch_cnt == 1:
             switch_names = ["switch"]
@@ -78,6 +81,7 @@ if __name__ == "__main__":
             "relayNames": relay_names,
             "relayIndicatorNames": relay_names[:indicators_cnt],
             "has_dedicated_net_led": has_dedicated_net_led,
+            "has_temperature": has_temperature,
         })
 
     template = env.get_template("switch_custom.js.jinja")

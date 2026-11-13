@@ -171,7 +171,7 @@ void telink_zigbee_hal_zcl_init(hal_zigbee_endpoint *endpoints,
   }
 }
 
-void hal_zigbee_notify_attribute_changed(uint8_t endpoint, uint8_t cluster_id,
+void hal_zigbee_notify_attribute_changed(uint8_t endpoint, uint16_t cluster_id,
                                          uint16_t attribute_id) {
   report_handler(); // Trigger reporting if needed
 }

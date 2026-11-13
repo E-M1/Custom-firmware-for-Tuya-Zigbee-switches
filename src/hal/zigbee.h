@@ -102,7 +102,7 @@ void hal_zigbee_set_image_type(uint16_t image_type);
  * @param cluster_id Cluster ID
  * @param attribute_id Attribute ID that changed
  */
-void hal_zigbee_notify_attribute_changed(uint8_t endpoint, uint8_t cluster_id,
+void hal_zigbee_notify_attribute_changed(uint8_t endpoint, uint16_t cluster_id,
                                          uint16_t attribute_id);
 
 /** Function called when attribute is written via Zigbee */

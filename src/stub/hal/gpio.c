@@ -61,6 +61,28 @@ uint8_t hal_gpio_read(hal_gpio_pin_t gpio_pin) {
   return gpio_pins[gpio_pin].value;
 }
 
+void hal_gpio_onewire_init(hal_gpio_pin_t gpio_pin) {
+  hal_gpio_init(gpio_pin, 1, HAL_GPIO_PULL_UP);
+}
+
+void hal_gpio_onewire_low(hal_gpio_pin_t gpio_pin) {
+  if (gpio_pin >= MAX_GPIO_PINS) return;
+  gpio_pins[gpio_pin].initialized = 1;
+  gpio_pins[gpio_pin].is_input = 0;
+  gpio_pins[gpio_pin].pull = HAL_GPIO_PULL_NONE;
+  gpio_pins[gpio_pin].value = 0;
+  io_log("GPIO", "1-Wire drive low on pin %d", gpio_pin);
+}
+
+void hal_gpio_onewire_release(hal_gpio_pin_t gpio_pin) {
+  if (gpio_pin >= MAX_GPIO_PINS) return;
+  gpio_pins[gpio_pin].initialized = 1;
+  gpio_pins[gpio_pin].is_input = 1;
+  gpio_pins[gpio_pin].pull = HAL_GPIO_PULL_UP;
+  gpio_pins[gpio_pin].value = 1;
+  io_log("GPIO", "1-Wire release pin %d", gpio_pin);
+}
+
 void hal_gpio_callback(hal_gpio_pin_t gpio_pin, gpio_callback_t callback,
                        void *arg) {
   ensure_valid_input_pin(gpio_pin);

@@ -55,6 +55,11 @@ static inline void hal_gpio_write(hal_gpio_pin_t gpio_pin, uint8_t value) {
  */
 uint8_t hal_gpio_read(hal_gpio_pin_t gpio_pin);
 
+/* Fast open-drain GPIO operations for 1-Wire buses such as DS18B20. */
+void hal_gpio_onewire_init(hal_gpio_pin_t gpio_pin);
+void hal_gpio_onewire_low(hal_gpio_pin_t gpio_pin);
+void hal_gpio_onewire_release(hal_gpio_pin_t gpio_pin);
+
 /**
  * Callback function type for GPIO state changes
  * Note: Called in task context, not interrupt routine to minimize race

@@ -153,6 +153,22 @@ uint8_t hal_gpio_read(hal_gpio_pin_t gpio_pin) {
 //     * If input has pull-up  -> active-low (wake on low level).
 //     * If input has pull-down-> active-high (wake on high level).
 //     * Otherwise default to rising+falling EXTI and active-low EM4WU.
+
+/* Generic fallback for the shared 1-Wire GPIO API. Telink has a fast
+ * direction-toggle implementation; this HAL keeps other targets linkable. */
+void hal_gpio_onewire_init(hal_gpio_pin_t gpio_pin) {
+  hal_gpio_init(gpio_pin, 1, HAL_GPIO_PULL_UP);
+}
+
+void hal_gpio_onewire_low(hal_gpio_pin_t gpio_pin) {
+  hal_gpio_init(gpio_pin, 0, HAL_GPIO_PULL_NONE);
+  hal_gpio_clear(gpio_pin);
+}
+
+void hal_gpio_onewire_release(hal_gpio_pin_t gpio_pin) {
+  hal_gpio_init(gpio_pin, 1, HAL_GPIO_PULL_UP);
+}
+
 void hal_gpio_callback(hal_gpio_pin_t gpio_pin, gpio_callback_t callback,
                        void *arg) {
   hal_gpio_ensure_clock();

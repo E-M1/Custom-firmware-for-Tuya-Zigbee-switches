@@ -5,6 +5,7 @@ const {
     onOff,
     text,
     binary,
+    temperature,
 } = require("zigbee-herdsman-converters/lib/modernExtend");
 const {assertString} = require("zigbee-herdsman-converters/lib/utils");
 const reporting = require("zigbee-herdsman-converters/lib/reporting");
@@ -212,6 +213,9 @@ const definitions = [
             romasku.networkIndicator("network_led", "{{device.switchNames[0]}}"),
             {% endif%}
             onOff({ endpointNames: {{device.relayNames | tojson }} }),
+            {% if device.has_temperature %}
+            temperature({ endpointNames: ["{{device.switchNames[0]}}"] }),
+            {% endif %}
             {% for switchName in device.switchNames %}
             romasku.pressAction("{{switchName}}_press_action", "{{switchName}}"),
             romasku.switchMode("{{switchName}}_mode", "{{switchName}}"),
