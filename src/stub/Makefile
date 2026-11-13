@@ -54,6 +54,7 @@ SOURCES := \
 	$(SRC_DIR)/zigbee/basic_cluster.c \
 	$(SRC_DIR)/zigbee/relay_cluster.c \
 	$(SRC_DIR)/zigbee/switch_cluster.c \
+    $(SRC_DIR)/zigbee/temperature_cluster.c \
 	$(SRC_DIR)/zigbee/group_cluster.c \
 	$(SRC_DIR)/zigbee/general_commands.c
 
