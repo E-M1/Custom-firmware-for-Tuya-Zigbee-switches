@@ -175,10 +175,12 @@ const romasku = {
                         validatePin(part.slice(1,3));
                     } else if(part[0] == 'M') {
                         ;
+                    } else if(part[0] == 'T') {
+                        validatePin(part.slice(1,3));
                     } else if(part[0] == 'i') {
                         ; // TODO: write validatetion
                     } else {
-                        throw new Error(`Invalid entry ${part}. Should start with one of B, R, L, S, I`);
+                        throw new Error(`Invalid entry ${part}. Should start with one of B, R, L, S, I, T`);
                     }
                 }
             }
